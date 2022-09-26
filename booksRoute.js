@@ -23,11 +23,15 @@ booksRouter.post("/new", (req, res) => {
   });
 });
 
-booksRouter.route("/:id").get((req, res) => {
-  Book.findById({ _id: req.params.id }, (err, book) => {
-    if (err) console.error(err);
-    res.send(book);
-  }).put((req, res) => {
+booksRouter
+  .route("/:id")
+  .get((req, res) => {
+    Book.findById({ _id: req.params.id }, (err, book) => {
+      if (err) console.error(err);
+      res.send(book);
+    });
+  })
+  .put((req, res) => {
     Book.findById({ _id: req.params.id }, (err, book) => {
       if (err) console.error(err);
       Object.assign(book, req.body).save((err, book) => {
@@ -35,7 +39,12 @@ booksRouter.route("/:id").get((req, res) => {
         res.redirect("/books/all");
       });
     });
+  })
+  .delete((req, res) => {
+    Book.remove({ _id: req.params.id }, (err, book) => {
+      if (err) console.error(err);
+      res.send({ message: "Book successfully removed !!" });
+    });
   });
-});
 
 module.exports = booksRouter;
