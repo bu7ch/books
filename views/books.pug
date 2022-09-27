@@ -1,0 +1,16 @@
+extends layout
+block content
+  h1 MES LIVRES
+  a.btn.btn-primary(href="/books/new") ajouter
+  each book in books
+    a(href=`/books/${book.id}`)
+      .container
+        .columns
+          .columns.col-6.col-mx-auto
+            .card
+              .card-image
+                img.img-responsive(src="")
+            .card-header
+              .card-title.h5=book.name
+            .card-body=book.author
+            .card-footer

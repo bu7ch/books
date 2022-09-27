@@ -12,6 +12,9 @@ db.once("open", () => console.log(`🎯 [MongoDB is connected !!]`))
 
 const bookRouter = require("./booksRoute");
 
+app.set("view engine", "pug")
+app.set("views", "./views")
+app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("test");

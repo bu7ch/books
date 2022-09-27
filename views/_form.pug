@@ -1,0 +1,10 @@
+extends layout
+block content
+  h4 Ajouter un livre
+    .form-group 
+    form(action="/books/new", method="post")
+      input.form-input(type="text", name="name", placeholder="inserer un nom de livre") 
+      input.form-input(type="text", name="author", placeholder="inserer l'auteur") 
+      input.form-input(type="text", name="genre", placeholder="inserer le genre") 
+      input.form-input(type="number", name="date_publish", placeholder="inserer l'année de publication")
+      button.btn.btn-primary.input-group-btn(type="submit") envoyer

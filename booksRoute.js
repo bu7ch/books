@@ -4,10 +4,13 @@ const booksRouter = require("express").Router();
 booksRouter.get("/all", (req, res) => {
   Book.find({}, (err, books) => {
     if (err) console.error(err);
-    res.send(books);
+    res.render("books",{books: books});
   });
 });
 
+booksRouter.get("/new", (req, res) => {
+  res.render('_form')
+})
 booksRouter.post("/new", (req, res) => {
   let newBook = new Book(req.body);
   // let newBook = {
