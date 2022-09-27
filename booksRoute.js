@@ -4,13 +4,13 @@ const booksRouter = require("express").Router();
 booksRouter.get("/all", (req, res) => {
   Book.find({}, (err, books) => {
     if (err) console.error(err);
-    res.render("books",{books: books});
+    res.render("books", { books: books });
   });
 });
 
 booksRouter.get("/new", (req, res) => {
-  res.render('_form')
-})
+  res.render("_form");
+});
 booksRouter.post("/new", (req, res) => {
   let newBook = new Book(req.body);
   // let newBook = {
@@ -49,5 +49,11 @@ booksRouter
       res.send({ message: "Book successfully removed !!" });
     });
   });
+booksRouter.route("/:id/edit").get((req, res) => {
+  Book.findById({ _id: req.params.id}, (err,book)=> {
+    if(err) console.error(err);
+    res.render("_edit",{book:book});
+  })
+});
 
 module.exports = booksRouter;

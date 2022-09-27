@@ -14,3 +14,5 @@ block content
               .card-title.h5=book.name
             .card-body=book.author
             .card-footer
+              a.btn.btn-primary(href=`/books/${book.id}/edit`) edit
+              a.btn.btn-primary(href=`/books/${book.id}/delete`) delete
